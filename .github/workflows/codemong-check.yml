@@ -23,17 +23,17 @@ jobs:
 
     steps:
       - name: Checkout user code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ inputs.target_sha }}
           path: submission
           persist-credentials: false
 
-      - name: Checkout Codemong checker
-        uses: actions/checkout@v4
+      - name: Checkout Codemong answer test
+        uses: actions/checkout@v6
         with:
-          repository: YOUR_ORG/codemong-checker
-          ref: main
+          repository: dbstjdqls14/codemong-answer-test
+          ref: step02
           token: ${{ secrets.CODEMONG_CHECKER_TOKEN }}
           path: checker
 
@@ -43,13 +43,13 @@ jobs:
           cp -R checker/missions/${{ inputs.mission_id }}/src/test/java/* submission/src/test/java/
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Run tests
         working-directory: submission
